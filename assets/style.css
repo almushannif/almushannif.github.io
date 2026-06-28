@@ -1,0 +1,36 @@
+/* Basic stylesheet for Al‑Mushannif site */
+:root{
+  --green:#127a2b;
+  --dark-green:#0f6a23;
+  --accent:#ffd24d;
+  --blue:#163b9a;
+  --muted:#6b7785;
+  --container:1100px;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;line-height:1.5;margin:0;color:#123;}
+.container{max-width:var(--container);margin:0 auto;padding:1rem}
+.site-header{background:#fff;border-bottom:1px solid #e6eef4}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0}
+.brand{display:flex;align-items:center;gap:0.75rem}
+.site-logo{height:56px;width:auto;display:block}
+.site-title{font-size:1.1rem;margin:0;color:var(--green)}
+.nav a{margin-left:0.75rem;color:var(--muted);text-decoration:none;padding:0.35rem 0.5rem;border-radius:6px}
+.nav a:hover{background:#f1f7f9;color:var(--green)}
+.btn{background:var(--green);color:#fff;padding:0.5rem 0.8rem;border-radius:6px;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--green);border:2px solid var(--green)}
+.hero{padding:2.25rem 0;background:linear-gradient(180deg,#f8fbfb,#fff)}
+.hero-inner{display:flex;gap:2rem;align-items:center}
+.lead{color:var(--muted);font-size:1.05rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.card{background:#fff;border-radius:8px;padding:1rem;box-shadow:0 1px 4px rgba(18,50,70,0.04)}
+.program-list{display:flex;flex-wrap:wrap;gap:0.5rem;list-style:none;padding:0}
+.program-list li{background:#f1f6f2;padding:0.45rem 0.6rem;border-radius:6px}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.5rem}
+.thumb{background:#e9f0f2;height:90px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.highlight{background:linear-gradient(180deg,#fffaf0,#fff);padding:1.25rem;border-radius:8px;margin:1.25rem 0}
+.site-footer{border-top:1px solid #eef4f6;padding:1rem 0;margin-top:2rem;text-align:center;color:var(--muted)}
+@media(max-width:900px){
+  .hero-inner{flex-direction:column}
+  .nav{display:none}
+}
