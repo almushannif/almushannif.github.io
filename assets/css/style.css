@@ -1,49 +1,148 @@
-/* Root styles, variables, and common utilities */
+/* Main stylesheet for Pondok Pesantren Al-Mushannif
+   - Struktur: variables -> base -> components -> utilities
+   - Sesuaikan gambar di /assets/images/
+*/
+
 :root{
-  --color-primary:#0B6E4F;
-  --color-secondary:#198754;
-  --color-accent:#FFC107;
-  --color-bg:#F8F9FA;
-  --color-dark:#212529;
-  --glass-bg: rgba(255,255,255,0.6);
-  --glass-border: rgba(255,255,255,0.4);
-  --fw-regular:400;
-  --fw-medium:600;
-  --radius:12px;
+  --primary: #0B6E4F;
+  --secondary: #198754;
+  --accent: #FFC107;
+  --white: #FFFFFF;
+  --bg: #F8F9FA;
+  --dark: #212529;
+
+  --font-sans: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
+/* Dark mode variables */
+:root[data-theme="dark"]{
+  --bg: #0b0c0d;
+  --white: #e9ecef;
+  --dark: #000;
+}
+
+/* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;font-family:'Poppins',sans-serif;background:var(--color-bg);color:var(--color-dark);-webkit-font-smoothing:antialiased}
-.container{max-width:1100px;margin:40px auto;padding:0 16px}
-.card{background:white;border-radius:var(--radius);padding:20px;box-shadow:0 6px 18px rgba(16,24,40,0.08)}
-.glass{background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(6px)}
-.btn{display:inline-block;padding:10px 16px;border-radius:8px;background:var(--color-primary);color:white;text-decoration:none}
-.btn-primary{background:var(--color-secondary)}
-.muted{color:#6c757d}
-
-/* Navbar placeholder styling */
-.navbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;position:sticky;top:0;background:rgba(255,255,255,0.5);backdrop-filter:blur(6px);z-index:50}
-.brand{font-weight:600;color:var(--color-primary)}
-
-/* Sidebar basic */
-.sidebar{width:240px;background:linear-gradient(180deg,white, #f7f7f7);position:fixed;top:0;left:0;height:100%;padding:20px;border-right:1px solid #eee}
-.dashboard-main{margin-left:260px;padding:24px}
-
-/* Responsive */
-@media(max-width:900px){
-  .sidebar{position:static;width:100%;height:auto;border-right:none}
-  .dashboard-main{margin-left:0}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--dark);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  scroll-behavior:smooth;
 }
 
-/* Loader */
-.loader{position:fixed;inset:0;background:rgba(255,255,255,0.75);display:flex;align-items:center;justify-content:center;z-index:999}
-.loader:after{content:'';width:56px;height:56px;border-radius:50%;border:6px solid var(--color-primary);border-top-color:transparent;animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* Preloader */
+.preloader{
+  position:fixed; inset:0; z-index:2000;
+  background:linear-gradient(135deg, rgba(11,110,79,0.95), rgba(25,135,84,0.95));
+  color:#fff;
+  transition:opacity .4s ease,visibility .4s;
+}
+.preloader.hidden{opacity:0;visibility:hidden;}
 
-/* Dark theme */
-.theme-dark{--color-bg:#0f1720;color:#e6edf3;background:#0b1220}
-.theme-dark .card{background:#0b1220;border-color:rgba(255,255,255,0.04)}
+/* NAVBAR */
+.navbar-transparent{background:transparent; transition:background .3s, box-shadow .3s}
+.navbar.scrolled{background:rgba(255,255,255,0.95); box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+:root[data-theme="dark"] .navbar.scrolled{background:rgba(10,10,10,0.9)}
 
-/* Small utilities */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+/* Hero */
+.hero-section{
+  position:relative;
+  height:100vh;
+  min-height:560px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-align:center;
+  overflow:hidden;
+}
+.hero-section .bg-image{
+  position:absolute; inset:0; background-size:cover; background-position:center; filter:brightness(.55);
+  transform:scale(1.05);
+}
+.hero-section .overlay-gradient{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(11,110,79,0.25), rgba(0,0,0,0.35));
+}
+.hero-content{position:relative; z-index:2}
+
+/* Glassmorphism card */
+.glass{
+  background:linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.25));
+  backdrop-filter: blur(8px);
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+:root[data-theme="dark"] .glass{
+  background:linear-gradient(135deg, rgba(20,20,20,0.55), rgba(20,20,20,0.25));
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+/* Cards & program */
+.program-card .icon{width:56px;height:56px;display:flex;align-items:center;justify-content:center}
+.card{border:none}
+
+/* Section spacing */
+section{padding-top:3.5rem;padding-bottom:3.5rem}
+
+/* Masonry */
+.masonry-grid{
+  column-count:3;
+  column-gap:1rem;
+}
+.masonry-item{break-inside:avoid; margin-bottom:1rem; overflow:hidden; border-radius:10px}
+.masonry-item img{width:100%; display:block; transition:transform .3s ease}
+.masonry-item img:hover{transform:scale(1.03)}
+
+/* Responsive masonry */
+@media (max-width:992px) { .masonry-grid{column-count:2} }
+@media (max-width:576px) { .masonry-grid{column-count:1} }
+
+/* Buttons & gradient */
+.btn-primary, .btn-success{background:var(--primary); border-color:var(--primary)}
+.btn-outline-warning{border-color:var(--accent); color:var(--accent)}
+.bg-primary-gradient{background:linear-gradient(90deg,var(--primary), var(--secondary)); color:white}
+
+/* Floating Whatsapp */
+.whatsapp-float{
+  position:fixed; right:1rem; bottom:4.5rem; z-index:1100;
+  background:linear-gradient(135deg,var(--secondary),var(--primary));
+  color:white; width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(11,110,79,0.28); transition:transform .15s;
+}
+.whatsapp-float:hover{transform:translateY(-4px)}
+
+/* Back to top */
+.back-to-top{
+  position:fixed; right:1rem; bottom:1rem; z-index:1100;
+  background:var(--dark); color:#fff; width:48px;height:48px;border-radius:8px; display:none; align-items:center; justify-content:center;
+}
+.back-to-top.show{display:flex}
+
+/* Footer */
+.footer{background:var(--dark); color:#fff}
+
+/* Utilities */
+.rounded-lg{border-radius:14px}
+
+/* Dark mode overrides */
+:root[data-theme="dark"]{
+  --primary: #0B6E4F;
+  --secondary: #198754;
+  --accent: #FFC107;
+  --bg: #0b0c0d;
+  --white: #e9ecef;
+  --dark: #f8f9fa;
+}
+:root[data-theme="dark"] body{color:var(--white); background:var(--bg)}
+
+/* Small screens fix */
+@media (max-width:768px){
+  .site-title{display:none}
+  .hero-section{min-height:520px}
+  .navbar.scrolled .nav-link{color:var(--dark)}
+}
