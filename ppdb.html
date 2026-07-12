@@ -1,148 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PPDB - Pondok Pesantren Al-Mushannif</title>
-  <meta name="description" content="Formulir Pendaftaran Santri Baru - PPDB Al-Mushannif" />
-  <link rel="stylesheet" href="/assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PPDB Pondok Pesantren Al-Mushannif 2026">
+  <title>PPDB | Pondok Pesantren Al-Mushannif</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-<header class="site-header">
-  <div class="container header-inner">
-    <div class="brand">
-      <img src="/assets/logo.svg" alt="Logo Yayasan Al‑Mushannif" class="site-logo">
-      <h1 class="site-title">PPDB Al‑Mushannif</h1>
+  <!-- Preloader -->
+  <div id="preloader" class="preloader d-flex justify-content-center align-items-center">
+    <div class="loader">
+      <div class="spinner-border text-success" role="status"></div>
+      <div class="mt-3 text-dark small">Memuat PPDB...</div>
     </div>
-    <nav class="nav">
-      <a href="/">Beranda</a>
-      <a href="/#about">Tentang</a>
-      <a href="/#programs">Program</a>
-      <a href="/#contact">Kontak</a>
-    </nav>
   </div>
-</header>
 
-<main class="container">
-  <section style="padding:2rem 0">
-    <h2>Formulir Pendaftaran Santri Baru (PPDB)</h2>
-    <p>Silakan isi formulir pendaftaran berikut dengan data yang lengkap. Setelah mengisi, klik "Kirim Pendaftaran". Anda dapat mengunggah berkas persyaratan (foto, akta, ijazah/rapor) di bagian unggah berkas.</p>
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
 
-    <!-- NOTE: Replace the action URL with your Formspree/Formsubmit/endpoint. -->
-    <form id="ppdb-form" action="https://formsubmit.co/your-email@example.com" method="POST" enctype="multipart/form-data">
-      <!-- Formspree / Formsubmit helpers: replace or remove as needed -->
-      <input type="hidden" name="_subject" value="PPDB Al‑Mushannif - Pendaftaran Baru">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://almushannif.github.io/ppdb-thanks.html">
+  <main class="py-6">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <img src="https://almushannif.ponpes.id/assets/logo.svg" alt="Logo" width="80" height="80" class="mb-3" loading="lazy" />
+        <h1 class="fw-bold">PPDB 2026</h1>
+        <p class="text-muted">Pendaftaran Peserta Didik Baru Pondok Pesantren Al-Mushannif</p>
+      </div>
 
-      <fieldset>
-        <legend>Data Santri</legend>
-        <label>Nama Lengkap<br><input type="text" name="nama_lengkap" required></label><br>
-        <label>Tempat, Tanggal Lahir<br><input type="text" name="ttl" placeholder="Contoh: Desa Bujak, 01 Jan 2015" required></label><br>
-        <label>Jenis Kelamin<br>
-          <select name="jk" required>
-            <option value="">Pilih...</option>
-            <option value="Laki-laki">Laki-laki</option>
-            <option value="Perempuan">Perempuan</option>
-          </select>
-        </label><br>
-        <label>Alamat Lengkap<br><textarea name="alamat" rows="2" required></textarea></label><br>
-        <label>Asal Sekolah / Pendidikan Terakhir<br><input type="text" name="asal_sekolah"></label><br>
-        <label>Program yang dipilih<br>
-          <select name="program" required>
-            <option value="">Pilih program...</option>
-            <option>RA / TK</option>
-            <option>MI / SD</option>
-            <option>MTs / SMP</option>
-            <option>MA / SMA</option>
-            <option>Tahfidz / Program Khusus</option>
-          </select>
-        </label>
-      </fieldset>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm p-5">
+            <h4 class="fw-bold mb-4">Formulir Pendaftaran</h4>
+            <form id="ppdbForm" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Nama Calon Santri</label>
+                <input type="text" class="form-control" name="nama" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Email</label>
+                <input type="email" class="form-control" name="email" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Nomor Telepon</label>
+                <input type="tel" class="form-control" name="telepon" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Program Pendidikan</label>
+                <select class="form-select" name="program" required>
+                  <option selected disabled>Pilih Program</option>
+                  <option>Tahfidz Al-Qur'an</option>
+                  <option>Madrasah Diniyah</option>
+                  <option>Komputer & Life Skill</option>
+                  <option>RA Al-Mushannif</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-success btn-lg w-100">Daftar Sekarang</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-      <fieldset>
-        <legend>Data Wali / Kontak</legend>
-        <label>Nama Wali<br><input type="text" name="nama_wali" required></label><br>
-        <label>Hubungan<br><input type="text" name="hubungan" placeholder="Orang tua / Wali" required></label><br>
-        <label>Telepon / WhatsApp<br><input type="tel" name="telepon" required placeholder="62812..."></label><br>
-        <label>Email (opsional)<br><input type="email" name="email"></label>
-      </fieldset>
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
 
-      <fieldset>
-        <legend>Unggah Berkas (opsional)</legend>
-        <p>Format yang disarankan: JPG/PNG/PDF. Ukuran maksimal per file: 4MB.</p>
-        <label>Foto Santri<br><input type="file" name="foto_santri" accept="image/*"></label><br>
-        <label>Akta Kelahiran / Kartu Keluarga<br><input type="file" name="akta" accept="image/*,application/pdf"></label><br>
-        <label>Ijazah / Rapor (jika ada)<br><input type="file" name="ijazah" accept="image/*,application/pdf"></label>
-      </fieldset>
-
-      <fieldset>
-        <legend>Informasi Tambahan</legend>
-        <label>Catatan / Keterangan (opsional)<br><textarea name="catatan" rows="3"></textarea></label>
-      </fieldset>
-
-      <p>
-        <button type="submit" class="btn">Kirim Pendaftaran</button>
-        <button type="reset" class="btn ghost">Kosongkan</button>
-      </p>
-
-      <p style="font-size:0.9rem;color:#666">Dengan mengirimkan formulir ini, Anda menyetujui Yayasan menyimpan data kontak untuk keperluan PPDB. Untuk menyimpan data di Google Sheets / database, hubungi kami agar saya bantu konfigurasi serverless atau Google Apps Script.</p>
-    </form>
-
-    <hr>
-
-    <h3>Opsi pengiriman alternatif</h3>
-    <ol>
-      <li>Formspree / Formsubmit: ganti attribute <code>action</code> di atas dengan endpoint dari penyedia layanan (contoh: <code>https://formsubmit.co/youremail@example.com</code> atau <code>https://formspree.io/f/{form_id}</code>).</li>
-      <li>Google Forms: saya bisa membuat Google Form dan embed di halaman ini (iframe) — beri tahu jika mau.</li>
-      <li>Serverless / Google Sheets: saya dapat menambahkan Google Apps Script atau Netlify Function untuk menyimpan hasil ke Google Sheets atau database (butuh akses/izin dari Anda).</li>
-    </ol>
-
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span id="year"></span> Pondok Pesantren Al‑Mushannif — Semua hak dilindungi.</p>
-  </div>
-</footer>
-
-<script>
-// small enhancement: show a friendly message after submit if the form is sent via fetch
-const form = document.getElementById('ppdb-form');
-form.addEventListener('submit', async (e) => {
-  // If the action is still the placeholder, show a warning and allow user to continue
-  const action = form.getAttribute('action');
-  if (action && action.includes('your-email@example.com')) {
-    // let the browser submit the form normally so the external service handles it
-    const proceed = confirm('Form action belum diatur (ganti "action" ke alamat Formsubmit/Formspree atau Google Forms). Klik OK untuk tetap mengirim via email placeholder, atau Cancel untuk membatalkan dan atur endpoint.');
-    if (!proceed) {
-      e.preventDefault();
-      return;
-    }
-    return; // proceed with default submission
-  }
-
-  // If the action looks like a JSON API endpoint (CORS permitting), try submitting via fetch to show inline success
-  e.preventDefault();
-  const formData = new FormData(form);
-  try {
-    const res = await fetch(action, {method:'POST', body: formData});
-    if (res.ok) {
-      alert('Pendaftaran berhasil dikirim. Terima kasih.');
-      form.reset();
-    } else {
-      alert('Terjadi kesalahan saat mengirim. Halaman akan mengirim secara normal sebagai fallback.');
-      form.submit();
-    }
-  } catch (err) {
-    console.error(err);
-    alert('Tidak dapat mengirim via JavaScript; formulir akan dikirim secara normal sebagai fallback.');
-    form.submit();
-  }
-});
-
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <script type="module" src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/main.js"></script>
 </body>
 </html>
