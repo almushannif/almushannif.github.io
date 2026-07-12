@@ -1,28 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Login — Al‑Mushannif</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Pondok Pesantren Al-Mushannif</title>
+
+    <meta name="description"
+        content="Login Sistem Informasi Pondok Pesantren Al-Mushannif">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/login.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
-<body class="auth-page theme-light">
-  <div class="auth-container">
-    <div class="card glass login-card">
-      <h2>Masuk</h2>
-      <p>Gunakan akun Google untuk masuk.</p>
 
-      <!-- Google Identity Services button will render here -->
-      <div id="g_id_signin"></div>
+<body class="auth-page">
 
-      <p class="muted">Atau <a href="/">Kembali ke Beranda</a></p>
+    <div class="overlay"></div>
+
+    <div class="login-wrapper">
+
+        <!-- LEFT -->
+
+        <div class="left-panel">
+
+            <div class="brand">
+
+                <img src="/assets/images/logo.png" alt="Logo Al-Mushannif">
+
+                <h1>Pondok Pesantren Al-Mushannif</h1>
+
+                <p>
+                    Membangun Generasi Qur'ani,
+                    Berakhlakul Karimah.
+                </p>
+
+            </div>
+
+            <div class="info">
+
+                <div class="item">
+                    <i class="fas fa-book-quran"></i>
+                    <span>Tahfidz Al-Qur'an</span>
+                </div>
+
+                <div class="item">
+                    <i class="fas fa-mosque"></i>
+                    <span>Kajian Kitab Kuning</span>
+                </div>
+
+                <div class="item">
+                    <i class="fas fa-laptop"></i>
+                    <span>Komputer & Life Skill</span>
+                </div>
+
+                <div class="item">
+                    <i class="fas fa-language"></i>
+                    <span>Bahasa Arab & Inggris</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="right-panel">
+
+            <div class="login-card">
+
+                <div class="logo-mobile">
+
+                    <img src="/assets/images/logo.png" alt="Logo">
+
+                </div>
+
+                <h2>Selamat Datang 👋</h2>
+
+                <p>
+                    Login menggunakan akun Google yang telah
+                    terdaftar pada Sistem Informasi
+                    Pondok Pesantren Al-Mushannif.
+                </p>
+
+                <div id="g_id_signin" class="google-btn"></div>
+
+                <div class="divider">
+                    <span>atau</span>
+                </div>
+
+                <a href="/" class="btn-home">
+                    <i class="fas fa-house"></i>
+                    Kembali ke Beranda
+                </a>
+
+                <div class="copyright">
+
+                    © 2026 Pondok Pesantren Al-Mushannif
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-  </div>
 
-  <!-- Google Identity Services -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script type="module" src="/assets/js/config.js"></script>
-  <script type="module" src="/assets/js/auth.js"></script>
+    <!-- Google Identity -->
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <script type="module" src="/assets/js/config.js"></script>
+
+    <script type="module" src="/assets/js/auth.js"></script>
+
 </body>
+
 </html>
