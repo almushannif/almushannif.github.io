@@ -12,11 +12,16 @@
     <div class="card glass login-card">
       <h2>Masuk</h2>
       <p>Gunakan akun Google untuk masuk.</p>
-      <button id="btn-google-signin" class="btn btn-primary">Masuk dengan Google</button>
+
+      <!-- Google Identity Services button will render here -->
+      <div id="g_id_signin"></div>
+
       <p class="muted">Atau <a href="/">Kembali ke Beranda</a></p>
     </div>
   </div>
 
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script type="module" src="/assets/js/config.js"></script>
   <script type="module" src="/assets/js/auth.js"></script>
 </body>

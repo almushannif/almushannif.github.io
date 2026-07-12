@@ -1,7 +1,8 @@
 // Configuration constants used across modules
 export const CONFIG = {
   BASE_API_URL: 'https://script.google.com/macros/s/REPLACE_WITH_ID/exec', // replace with real Apps Script URL
-  TIMEOUT: 15000
+  TIMEOUT: 15000,
+  GOOGLE_CLIENT_ID: 'REPLACE_WITH_GOOGLE_CLIENT_ID.apps.googleusercontent.com'
 };
 
 // Utility to load HTML components into placeholders
