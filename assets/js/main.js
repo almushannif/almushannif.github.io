@@ -1,166 +1,344 @@
-/* Main JavaScript for Pondok Pesantren Al-Mushannif
-   - Init AOS, Swiper
-   - Preloader handling
-   - Dark mode toggle (localStorage)
-   - Smooth scroll, sticky navbar
-   - Counters using IntersectionObserver
-   - Lightbox modal for galeri
-*/
+/**
+ * main.js - Main Initialization Module
+ * Orchestrates all page initialization and setup
+ */
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Preloader
-  const preloader = document.getElementById('preloader');
-  window.setTimeout(() => {
-    preloader.classList.add('hidden');
-  }, 600);
+import CONFIG from './config.js';
+import { api } from './api.js';
+import { auth } from './auth.js';
+import { componentLoader } from './components.js';
+import {
+  hidePreloader,
+  initializeDarkMode,
+  initLazyLoadImages,
+  initCounters,
+  toggleDarkMode,
+  smoothScroll,
+  navigate
+} from './utils.js';
 
-  // Year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Initialize AOS
-  if (window.AOS) AOS.init({ once: true, duration: 800 });
-
-  // Initialize Swiper for prestasi
-  if (window.Swiper) {
-    new Swiper('.prestige-swiper', {
-      slidesPerView: 1,
-      spaceBetween: 16,
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        768: { slidesPerView: 2 },
-        992: { slidesPerView: 3 }
-      }
-    });
+class MainApp {
+  constructor() {
+    this.initialized = false;
   }
 
-  // Dark mode toggle
-  const themeToggle = document.getElementById('darkModeToggle');
-  const root = document.documentElement;
-  function setTheme(theme) {
-    if (theme === 'dark') root.setAttribute('data-theme', 'dark');
-    else root.removeAttribute('data-theme');
-  }
-  const saved = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  setTheme(saved);
-  updateThemeIcon(saved);
+  /**
+   * Initialize main application
+   */
+  async init() {
+    try {
+      // Initialize dark mode
+      initializeDarkMode();
 
-  themeToggle.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-    const next = current === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    localStorage.setItem('theme', next);
-    updateThemeIcon(next);
-  });
+      // Load components
+      await componentLoader.loadAllComponents();
 
-  function updateThemeIcon(theme) {
-    if (!themeToggle) return;
-    themeToggle.innerHTML = theme === 'dark' ? '<i class=\"fa-solid fa-sun\"></i>' : '<i class=\"fa-regular fa-moon\"></i>';
-  }
+      // Initialize page-specific features
+      this.initializePageFeatures();
 
-  // Smooth scroll for anchors
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href').slice(1);
-      const target = document.getElementById(targetId);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
+      // Setup event listeners
+      this.setupEventListeners();
 
-  // Sticky navbar change on scroll
-  const navbar = document.getElementById('mainNav');
-  function onScroll() {
-    if (window.scrollY > 80) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+      // Hide preloader
+      hidePreloader();
 
-    // Back to top
-    const back = document.getElementById('backToTop');
-    if (window.scrollY > 400) back.classList.add('show'); else back.classList.remove('show');
-  }
-  onScroll();
-  document.addEventListener('scroll', onScroll);
-
-  // Back to top click
-  document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  // Counters - animate when visible
-  const counters = document.querySelectorAll('.counter');
-  const counterObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = +el.getAttribute('data-target') || 0;
-        const duration = 1600;
-        const start = performance.now();
-        const initial = 0;
-        function animate(t) {
-          const elapsed = t - start;
-          const prog = Math.min(elapsed / duration, 1);
-          const value = Math.floor(initial + (target - initial) * prog);
-          el.textContent = value;
-          if (prog < 1) requestAnimationFrame(animate);
-        }
-        requestAnimationFrame(animate);
-        counterObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.6 });
-
-  counters.forEach(c => counterObserver.observe(c));
-
-  // Gallery lightbox using bootstrap modal
-  const galleryImages = document.querySelectorAll('.masonry-item img');
-  const lightboxImage = document.getElementById('lightboxImage');
-  galleryImages.forEach(img => {
-    img.addEventListener('click', function () {
-      const src = this.dataset.src || this.src;
-      lightboxImage.src = src;
-    });
-  });
-
-  // Contact form submit -> SweetAlert2 simulation
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      Swal.fire({
-        title: 'Terima Kasih',
-        text: 'Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.',
-        icon: 'success',
-        confirmButtonColor: getComputedStyle(document.documentElement).getPropertyValue('--primary') || '#0B6E4F'
-      });
-      contactForm.reset();
-    });
+      this.initialized = true;
+      console.log('Application initialized successfully');
+    } catch (error) {
+      console.error('Application initialization failed:', error);
+      hidePreloader();
+    }
   }
 
-  // WhatsApp float (small animation)
-  const whatsappFloat = document.getElementById('whatsappFloat');
-  if (whatsappFloat) {
-    whatsappFloat.addEventListener('mouseenter', () => whatsappFloat.style.transform = 'translateY(-6px)');
-    whatsappFloat.addEventListener('mouseleave', () => whatsappFloat.style.transform = 'translateY(0)');
+  /**
+   * Initialize page-specific features
+   */
+  initializePageFeatures() {
+    const currentPage = window.location.pathname;
+
+    // Home page features
+    if (currentPage === '/' || currentPage.endsWith('index.html') || currentPage === '') {
+      this.initHomePageFeatures();
+    }
+
+    // Login page features
+    if (currentPage.includes('login.html')) {
+      this.initLoginPageFeatures();
+    }
+
+    // PPDB page features
+    if (currentPage.includes('ppdb.html')) {
+      this.initPPDBPageFeatures();
+    }
+
+    // Donation page features
+    if (currentPage.includes('donasi.html')) {
+      this.initDonationPageFeatures();
+    }
   }
 
-  // Lazy loading is handled by loading="lazy" attributes in <img> and <iframe>
+  /**
+   * Initialize home page features
+   */
+  initHomePageFeatures() {
+    // Initialize lazy loading
+    if (CONFIG.FEATURES.ENABLE_LAZY_LOADING) {
+      initLazyLoadImages();
+    }
 
-  // Accessibility: close any open dropdowns on Escape
-  document.addEventListener('keyup', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.dropdown-menu.show').forEach(m => {
-        const bs = bootstrap.Dropdown.getOrCreateInstance(m.previousElementSibling);
-        bs.hide();
+    // Initialize counters
+    initCounters();
+
+    // Initialize AOS animations if available
+    if (window.AOS) {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
       });
     }
-  });
 
-  // Optional: show a welcome toast for first-time visitors (comment/uncomment as needed)
-  // if (!localStorage.getItem('welcomeShown')) {
-  //   Swal.fire({ title: 'Selamat Datang', text: 'Selamat datang di Pondok Pesantren Al-Mushannif', timer: 2500, showConfirmButton: false });
-  //   localStorage.setItem('welcomeShown', '1');
-  // }
+    // Initialize Swiper if available
+    this.initSwipers();
 
+    // Setup smooth scroll for anchor links
+    this.setupSmoothScroll();
+
+    // Setup modal lightbox
+    this.setupLightbox();
+
+    // Setup contact form
+    this.setupContactForm();
+
+    // Back to top button
+    this.setupBackToTop();
+
+    // WhatsApp button
+    this.setupWhatsAppButton();
+  }
+
+  /**
+   * Initialize login page features
+   */
+  initLoginPageFeatures() {
+    // Auth module handles sign-in
+    auth.initGoogleSignIn();
+  }
+
+  /**
+   * Initialize PPDB page features
+   */
+  initPPDBPageFeatures() {
+    const form = document.getElementById('ppdbForm');
+    if (form) {
+      form.addEventListener('submit', (e) => this.handlePPDBSubmit(e));
+    }
+  }
+
+  /**
+   * Initialize donation page features
+   */
+  initDonationPageFeatures() {
+    // Load donation status
+    this.loadDonationStatus();
+  }
+
+  /**
+   * Setup smooth scroll for anchor links
+   */
+  setupSmoothScroll() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          smoothScroll(href);
+        }
+      });
+    });
+  }
+
+  /**
+   * Setup Swiper carousels
+   */
+  initSwipers() {
+    if (!window.Swiper) return;
+
+    const Swiper = window.Swiper;
+
+    // Prestasi slider
+    const prestigeSwiper = document.querySelector('.prestige-swiper');
+    if (prestigeSwiper) {
+      new Swiper(prestigeSwiper, {
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        },
+        slidesPerView: 1,
+        spaceBetween: 20,
+        breakpoints: {
+          768: {
+            slidesPerView: 2
+          },
+          1024: {
+            slidesPerView: 3
+          }
+        }
+      });
+    }
+  }
+
+  /**
+   * Setup lightbox for gallery
+   */
+  setupLightbox() {
+    const images = document.querySelectorAll('.masonry-item img');
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        const lightboxImage = document.getElementById('lightboxImage');
+        if (lightboxImage) {
+          lightboxImage.src = img.dataset.src || img.src;
+        }
+      });
+    });
+  }
+
+  /**
+   * Setup contact form
+   */
+  setupContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => this.handleContactSubmit(e));
+    }
+  }
+
+  /**
+   * Handle contact form submission
+   * @param {Event} e - Submit event
+   */
+  async handleContactSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    try {
+      await api.submitContactForm(data);
+      e.target.reset();
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+    }
+  }
+
+  /**
+   * Handle PPDB form submission
+   * @param {Event} e - Submit event
+   */
+  async handlePPDBSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await api.submitPPDB(data);
+      if (response.success) {
+        // Redirect to thank you page
+        setTimeout(() => {
+          navigate(CONFIG.ROUTES.PPDB_THANKS);
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('PPDB form submission failed:', error);
+    }
+  }
+
+  /**
+   * Load donation status
+   */
+  async loadDonationStatus() {
+    try {
+      const donations = await api.fetchDonationStatus();
+      // Display donations (implementation depends on page structure)
+    } catch (error) {
+      console.error('Failed to load donation status:', error);
+    }
+  }
+
+  /**
+   * Setup back to top button
+   */
+  setupBackToTop() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (!backToTopBtn) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'flex';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  /**
+   * Setup WhatsApp floating button
+   */
+  setupWhatsAppButton() {
+    const whatsappBtn = document.getElementById('whatsappFloat');
+    if (whatsappBtn) {
+      whatsappBtn.href = CONFIG.SOCIAL.WHATSAPP;
+      whatsappBtn.target = '_blank';
+    }
+  }
+
+  /**
+   * Setup event listeners
+   */
+  setupEventListeners() {
+    // Dark mode toggle
+    const darkModeBtn = document.getElementById('darkModeToggle');
+    if (darkModeBtn) {
+      darkModeBtn.addEventListener('click', () => {
+        toggleDarkMode();
+      });
+    }
+
+    // Navbar brand click (go to home)
+    const navbarBrand = document.querySelector('.navbar-brand');
+    if (navbarBrand) {
+      navbarBrand.addEventListener('click', (e) => {
+        if (navbarBrand.getAttribute('href') === '#') {
+          e.preventDefault();
+          smoothScroll('#hero');
+        }
+      });
+    }
+  }
+}
+
+// Initialize app when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new MainApp();
+  app.init();
 });
+
+export default MainApp;
