@@ -1,1 +1,49 @@
-<div class="loader" id="page-loader" hidden></div>
+<!-- Loading Screen Component -->
+<div id="preloader" class="preloader d-flex justify-content-center align-items-center">
+  <div class="loader text-center">
+    <div class="spinner-border text-success mb-3" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Memuat...</span>
+    </div>
+    <div class="text-dark small fw-medium">Memuat Pondok Pesantren Al-Mushannif...</div>
+  </div>
+</div>
+
+<style>
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+  }
+
+  .preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spinner-border {
+    animation: spinner-rotate 1s linear infinite;
+  }
+
+  @keyframes spinner-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

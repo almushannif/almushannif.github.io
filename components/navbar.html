@@ -1,21 +1,78 @@
-<nav class="navbar">
-  <div class="brand">Al‑Mushannif</div>
-  <div class="nav-actions">
-    <button id="btn-theme-toggle" class="btn">Toggle Theme</button>
-  </div>
-</nav>
+<!-- Navbar Component -->
+<header class="sticky-top">
+  <nav id="mainNav" class="navbar navbar-expand-lg navbar-light py-3 shadow-sm">
+    <div class="container-fluid">
+      <!-- Logo & Title -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/" title="Kembali ke Beranda">
+        <img src="https://almushannif.ponpes.id/assets/logo.svg" alt="Logo Al-Mushannif" width="48" height="48" class="rounded-circle" loading="lazy" />
+        <div class="d-none d-md-block">
+          <h6 class="mb-0 site-title fw-bold">Pondok Pesantren Al-Mushannif</h6>
+          <small class="text-muted">Membangun Generasi Qur'ani, Berakhlakul Karimah</small>
+        </div>
+      </a>
 
-<script>
-  // Keep minimal inline script only for progressive enhancement of this component
-  (function(){
-    const btn = document.getElementById('btn-theme-toggle');
-    if(!btn) return;
-    btn.addEventListener('click', ()=>{
-      document.body.classList.toggle('theme-dark');
-      document.body.classList.toggle('theme-light');
-      localStorage.setItem('theme', document.body.classList.contains('theme-dark') ? 'dark' : 'light');
-    });
-    const saved = localStorage.getItem('theme');
-    if(saved === 'dark') document.body.classList.add('theme-dark');
-  })();
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <!-- Primary menu -->
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#hero">Beranda</a></li>
+
+          <!-- Profil dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profil</a>
+            <ul class="dropdown-menu" aria-labelledby="profilDropdown">
+              <li><a class="dropdown-item" href="#tentang">Tentang Pesantren</a></li>
+              <li><a class="dropdown-item" href="#sejarah">Sejarah</a></li>
+              <li><a class="dropdown-item" href="#visi-misi">Visi &amp; Misi</a></li>
+              <li><a class="dropdown-item" href="#nilai">Nilai-Nilai</a></li>
+              <li><a class="dropdown-item" href="#struktur">Struktur Organisasi</a></li>
+              <li><a class="dropdown-item" href="#sambutan">Sambutan Pimpinan</a></li>
+            </ul>
+          </li>
+
+          <!-- Program Pendidikan dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="programDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Program Pendidikan</a>
+            <ul class="dropdown-menu" aria-labelledby="programDropdown">
+              <li><a class="dropdown-item" href="#programs">RA Al-Mushannif</a></li>
+              <li><a class="dropdown-item" href="#programs">Tahfidz Al-Qur'an</a></li>
+              <li><a class="dropdown-item" href="#programs">Tahsin Al-Qur'an</a></li>
+              <li><a class="dropdown-item" href="#programs">Kajian Kitab Kuning</a></li>
+              <li><a class="dropdown-item" href="#programs">Madrasah Diniyah</a></li>
+              <li><a class="dropdown-item" href="#programs">TPQ</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#programs">Bahasa Arab</a></li>
+              <li><a class="dropdown-item" href="#programs">Bahasa Inggris</a></li>
+              <li><a class="dropdown-item" href="#programs">Komputer</a></li>
+              <li><a class="dropdown-item" href="#programs">Life Skill</a></li>
+              <li><a class="dropdown-item" href="#programs">BLKK</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="#santri">Santri</a></li>
+          <li class="nav-item"><a class="nav-link" href="#guru">Guru &amp; Tendik</a></li>
+          <li class="nav-item"><a class="nav-link" href="#fasilitas">Fasilitas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="#berita">Berita</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-outline-success ms-lg-3" href="/ppdb.html">PPDB</a></li>
+          <li class="nav-item ms-2">
+            <button id="darkModeToggle" class="btn btn-sm btn-outline-secondary" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+              <i class="fa-regular fa-moon"></i>
+            </button>
+          </li>
+          <li class="nav-item ms-2">
+            <a class="btn btn-sm btn-success" href="/login.html"><i class="fa-solid fa-right-to-bracket me-2"></i><span class="d-none d-md-inline">Login</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="module">
+  import { componentLoader } from '/assets/js/components.js';
+  // Event listeners are attached by componentLoader
 </script>
