@@ -1,6 +1,6 @@
 // Configuration constants used across modules
 export const CONFIG = {
-  BASE_API_URL: 'https://script.google.com/macros/s/REPLACE_WITH_ID/exec', // replace with real Apps Script URL
+  BASE_API_URL: 'https://script.google.com/macros/s/AKfycbwWODoQ-c-oeHSwqkW8FkDM_yYzkruP2FWeQNOvqkzpOWJ0b4Mz0sRLOG1z2cwEr1Ir/exec', // Google Apps Script Web App URL
   TIMEOUT: 15000,
   GOOGLE_CLIENT_ID: 'REPLACE_WITH_GOOGLE_CLIENT_ID.apps.googleusercontent.com'
 };

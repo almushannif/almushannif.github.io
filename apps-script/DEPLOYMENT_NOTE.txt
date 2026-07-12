@@ -1,0 +1,11 @@
+Apps Script Web App URL has been set in assets/js/config.js to the provided deployment URL.
+
+Web App URL:
+https://script.google.com/macros/s/AKfycbwWODoQ-c-oeHSwqkW8FkDM_yYzkruP2FWeQNOvqkzpOWJ0b4Mz0sRLOG1z2cwEr1Ir/exec
+
+Next actions I recommend:
+1. Provide Google OAuth Client ID (Client ID format: XXXXXX.apps.googleusercontent.com) so I can set CONFIG.GOOGLE_CLIENT_ID and enable real Google Sign-In on the login page.
+2. Confirm if you want me to add server-side aud verification in the Apps Script (requires the client ID) — I can update handleLogin to check info.aud === YOUR_CLIENT_ID and reject otherwise.
+3. Shall I proceed to implement Santri CRUD endpoints in the Apps Script and add frontend santri.html + assets/js/santri.js? I can create a feature branch for that or commit to main per your preference.
+
+If you confirm, I'll (a) set the GOOGLE_CLIENT_ID when you provide it and (b) continue with CRUD implementation.
