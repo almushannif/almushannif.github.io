@@ -1,51 +1,611 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Al‑Mushannif — Sistem Informasi</title>
-  <meta name="description" content="Sistem Informasi Pondok Pesantren Al‑Mushannif">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Meta & SEO -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Pondok Pesantren Al-Mushannif — Membangun Generasi Qur'ani, Berakhlakul Karimah" />
+  <title>Pondok Pesantren Al-Mushannif</title>
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="manifest" href="/manifest.json">
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Swiper -->
+  <link href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- SweetAlert2 -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link href="assets/css/style.css" rel="stylesheet" />
+
+  <!-- Theme color for mobile -->
+  <meta name="theme-color" content="#0B6E4F" />
 </head>
-<body class="theme-light">
-  <!-- Loader (hidden by default) -->
-  <div id="app-loader" class="loader" hidden></div>
+<body>
+  <!-- =========================
+       1) LOADING SCREEN
+       ========================= -->
+  <div id="preloader" class="preloader d-flex justify-content-center align-items-center">
+    <div class="loader">
+      <div class="spinner-border text-white" role="status" style="width:3rem;height:3rem"></div>
+      <div class="mt-3 text-white small">Memuat Pondok Pesantren Al-Mushannif...</div>
+    </div>
+  </div>
 
-  <!-- Navbar (included component) -->
-  <div id="navbar-placeholder"></div>
+  <!-- =========================
+       2) NAVBAR (transparent, sticky)
+       ========================= -->
+  <header class="sticky-top">
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-transparent py-3">
+      <div class="container">
+        <!-- Logo & Title -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <img src="assets/images/logo.png" alt="Logo Al-Mushannif" width="48" height="48" class="rounded-circle glass" loading="lazy" />
+          <div class="d-none d-md-block">
+            <h6 class="mb-0 site-title">Pondok Pesantren Al-Mushannif</h6>
+            <small class="text-muted">Membangun Generasi Qur'ani, Berakhlakul Karimah</small>
+          </div>
+        </a>
 
-  <main class="container">
-    <section class="hero">
-      <div class="card glass">
-        <h1>Selamat datang di Sistem Informasi</h1>
-        <p>Pondok Pesantren Al‑Mushannif — tampilan awal.</p>
-        <a class="btn" href="/login.html">Masuk</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <!-- Primary menu -->
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="#hero">Beranda</a></li>
+
+            <!-- Profil dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Profil</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#tentang">Tentang Pesantren</a></li>
+                <li><a class="dropdown-item" href="#sejarah">Sejarah</a></li>
+                <li><a class="dropdown-item" href="#visi-misi">Visi &amp; Misi</a></li>
+                <li><a class="dropdown-item" href="#nilai">Nilai-Nilai</a></li>
+                <li><a class="dropdown-item" href="#struktur">Struktur Organisasi</a></li>
+                <li><a class="dropdown-item" href="#sambutan">Sambutan Pimpinan</a></li>
+              </ul>
+            </li>
+
+            <!-- Program Pendidikan dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Program Pendidikan</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#programs">RA Al-Mushannif</a></li>
+                <li><a class="dropdown-item" href="#programs">Tahfidz Al-Qur'an</a></li>
+                <li><a class="dropdown-item" href="#programs">Tahsin Al-Qur'an</a></li>
+                <li><a class="dropdown-item" href="#programs">Kajian Kitab Kuning</a></li>
+                <li><a class="dropdown-item" href="#programs">Madrasah Diniyah</a></li>
+                <li><a class="dropdown-item" href="#programs">TPQ</a></li>
+                <li><a class="dropdown-item" href="#programs">Bahasa Arab</a></li>
+                <li><a class="dropdown-item" href="#programs">Bahasa Inggris</a></li>
+                <li><a class="dropdown-item" href="#programs">Komputer</a></li>
+                <li><a class="dropdown-item" href="#programs">Life Skill</a></li>
+                <li><a class="dropdown-item" href="#programs">BLKK</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="#santri">Santri</a></li>
+            <li class="nav-item"><a class="nav-link" href="#guru">Guru &amp; Tendik</a></li>
+            <li class="nav-item"><a class="nav-link" href="#fasilitas">Fasilitas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="#berita">Berita</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-outline-light ms-lg-3" href="#ppdb">PPDB</a></li>
+            <li class="nav-item ms-2">
+              <button id="darkModeToggle" class="btn btn-icon btn-light" title="Toggle Dark Mode"><i class="fa-regular fa-moon"></i></button>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="btn btn-success" href="#login"><i class="fa-solid fa-right-to-bracket me-2"></i>Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =========================
+       3) HERO SECTION (fullscreen, image background)
+       ========================= -->
+  <section id="hero" class="hero-section d-flex align-items-center">
+    <div class="bg-image" style="background-image:url('assets/images/hero-islami.jpg')" aria-hidden="true"></div>
+    <div class="overlay-gradient"></div>
+
+    <div class="container text-center hero-content" data-aos="fade-up">
+      <h1 class="display-4 fw-bold text-white">Pondok Pesantren Al-Mushannif</h1>
+      <p class="lead text-white mb-4">"Membangun Generasi Qur'ani, Berakhlakul Karimah"</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#tentang" class="btn btn-light btn-lg">Profil</a>
+        <a href="#ppdb" class="btn btn-outline-warning btn-lg">PPDB Online</a>
+        <a href="#donasi" class="btn btn-warning btn-lg text-dark">Donasi</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- =========================
+         4) TENTANG KAMI
+         ========================= -->
+    <section id="tentang" class="py-6">
+      <div class="container">
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="card glass p-4">
+              <h3>Tentang Pondok Pesantren Al-Mushannif</h3>
+              <p class="text-muted">
+                Pondok Pesantren Al-Mushannif berlokasi di Dusun Tenten Lauk, Desa Bujak, Batukliang, Lombok Tengah.
+                Berkomitmen mendidik generasi Qur'ani dengan akhlak mulia melalui program keilmuan Nahwu, Fiqh, Tajwid, dan tahfidz.
+              </p>
+              <a href="#visi-misi" class="link-primary">Selengkapnya &raquo;</a>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="card glass p-3 text-center">
+                  <i class="fa-solid fa-book-open fa-2x text-success mb-2"></i>
+                  <h6>Visi</h6>
+                  <p class="small text-muted">Mewujudkan generasi qur'ani berakhlakul karimah.</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card glass p-3 text-center">
+                  <i class="fa-solid fa-bullseye fa-2x text-success mb-2"></i>
+                  <h6>Misi</h6>
+                  <p class="small text-muted">Mencetak penghafal Al-Qur'an dan insan berakhlak mulia.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="features">
-      <div class="card glass">
-        <h2>Fitur</h2>
-        <ul>
-          <li>PPDB Online</li>
-          <li>Dashboard Statistik</li>
-          <li>Manajemen Santri, Guru, Alumni</li>
-        </ul>
+    <!-- =========================
+         5) KEUNGGULAN
+         ========================= -->
+    <section id="keunggulan" class="py-6 bg-light">
+      <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+          <h2>Keunggulan Kami</h2>
+          <p class="text-muted">Program unggulan untuk membentuk santri berkualitas.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Card list -->
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="50">
+            <div class="card rounded-lg p-4 glass h-100">
+              <i class="fa-solid fa-mosque fa-2x text-success mb-3"></i>
+              <h5>Tahfidz</h5>
+              <p class="small text-muted">Program penghafal Al-Qur'an dengan kurikulum terstruktur.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="card rounded-lg p-4 glass h-100">
+              <i class="fa-solid fa-scroll fa-2x text-success mb-3"></i>
+              <h5>Kitab Kuning</h5>
+              <p class="small text-muted">Kajian kitab-kitab klasik untuk penguatan ilmu Ushul dan Fiqh.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+            <div class="card rounded-lg p-4 glass h-100">
+              <i class="fa-solid fa-language fa-2x text-success mb-3"></i>
+              <h5>Bahasa Arab &amp; Inggris</h5>
+              <p class="small text-muted">Pelatihan bahasa untuk mendukung pemahaman agama dan keterampilan abad 21.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="card rounded-lg p-4 glass h-100">
+              <i class="fa-solid fa-laptop-code fa-2x text-success mb-3"></i>
+              <h5>Komputer &amp; BLKK</h5>
+              <p class="small text-muted">Skill teknologi dan vokasional untuk kesiapan kerja.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="250">
+            <div class="card rounded-lg p-4 glass h-100">
+              <i class="fa-solid fa-hand-holding-heart fa-2x text-success mb-3"></i>
+              <h5>Karakter Islami</h5>
+              <p class="small text-muted">Pendampingan akhlak dan etika sehari-hari.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="card rounded-lg p-4 glass h-100">
+              <i class="fa-solid fa-hands-praying fa-2x text-success mb-3"></i>
+              <h5>Life Skill</h5>
+              <p class="small text-muted">Keterampilan hidup untuk kemandirian santri.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         6) PROGRAM PENDIDIKAN (Cards)
+         ========================= -->
+    <section id="programs" class="py-6">
+      <div class="container">
+        <div class="section-header text-center mb-4" data-aos="fade-up">
+          <h2>Program Pendidikan</h2>
+          <p class="text-muted">Program kami dirancang untuk pengembangan ilmu dan karakter.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Repeatable program card -->
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="50">
+            <div class="card program-card p-3 h-100">
+              <div class="icon bg-success text-white rounded-circle mb-3"><i class="fa-solid fa-child fa-lg"></i></div>
+              <h6>RA Al-Mushannif</h6>
+              <p class="small text-muted">Pendidikan anak usia dini berbasis agama.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="card program-card p-3 h-100">
+              <div class="icon bg-success text-white rounded-circle mb-3"><i class="fa-solid fa-quran"></i></div>
+              <h6>Tahfidz Al-Qur'an</h6>
+              <p class="small text-muted">Program intensif untuk penghafal Quran.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="150">
+            <div class="card program-card p-3 h-100">
+              <div class="icon bg-success text-white rounded-circle mb-3"><i class="fa-solid fa-book"></i></div>
+              <h6>Kajian Kitab Kuning</h6>
+              <p class="small text-muted">Kajian klasik dan konservasi ilmu tradisi pesantren.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="card program-card p-3 h-100">
+              <div class="icon bg-success text-white rounded-circle mb-3"><i class="fa-solid fa-laptop"></i></div>
+              <h6>Komputer</h6>
+              <p class="small text-muted">Penguasaan dasar digital untuk santri.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         7) STATISTIK (Counter)
+         ========================= -->
+    <section id="statistik" class="py-6 bg-light">
+      <div class="container">
+        <div class="row text-center g-4">
+          <div class="col-md-3" data-aos="fade-up">
+            <div class="card glass p-4">
+              <h3 class="counter" data-target="520">0</h3>
+              <p class="mb-0">Jumlah Santri</p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="card glass p-4">
+              <h3 class="counter" data-target="45">0</h3>
+              <p class="mb-0">Jumlah Guru</p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="card glass p-4">
+              <h3 class="counter" data-target="320">0</h3>
+              <p class="mb-0">Jumlah Alumni</p>
+            </div>
+          </div>
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="card glass p-4">
+              <h3 class="counter" data-target="120">0</h3>
+              <p class="mb-0">Jumlah Hafidz</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         8) FASILITAS (grid)
+         ========================= -->
+    <section id="fasilitas" class="py-6">
+      <div class="container">
+        <div class="section-header text-center mb-4" data-aos="fade-up">
+          <h2>Fasilitas</h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-4" data-aos="fade-right"><div class="card card-facility glass p-3"><img src="assets/images/masjid.jpg" alt="Masjid" class="w-100 rounded mb-2" loading="lazy"><h6>Masjid</h6></div></div>
+          <div class="col-md-4" data-aos="fade-right" data-aos-delay="100"><div class="card card-facility glass p-3"><img src="assets/images/asrama.jpg" alt="Asrama" class="w-100 rounded mb-2" loading="lazy"><h6>Asrama</h6></div></div>
+          <div class="col-md-4" data-aos="fade-right" data-aos-delay="200"><div class="card card-facility glass p-3"><img src="assets/images/perpustakaan.jpg" alt="Perpustakaan" class="w-100 rounded mb-2" loading="lazy"><h6>Perpustakaan</h6></div></div>
+          <div class="col-md-4" data-aos="fade-left"><div class="card card-facility glass p-3"><img src="assets/images/lab.jpg" alt="Laboratorium" class="w-100 rounded mb-2" loading="lazy"><h6>Laboratorium Komputer</h6></div></div>
+          <div class="col-md-4" data-aos="fade-left" data-aos-delay="100"><div class="card card-facility glass p-3"><img src="assets/images/lapangan.jpg" alt="Lapangan" class="w-100 rounded mb-2" loading="lazy"><h6>Lapangan</h6></div></div>
+          <div class="col-md-4" data-aos="fade-left" data-aos-delay="200"><div class="card card-facility glass p-3"><img src="assets/images/kantin.jpg" alt="Kantin" class="w-100 rounded mb-2" loading="lazy"><h6>Kantin</h6></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         9) PRESTASI (Swiper Slider)
+         ========================= -->
+    <section id="prestasi" class="py-6 bg-light">
+      <div class="container">
+        <div class="section-header mb-4 text-center" data-aos="fade-up">
+          <h2>Prestasi Santri</h2>
+        </div>
+
+        <div class="swiper-container prestige-swiper" data-aos="fade-up">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide card p-3">
+              <h6>Juara 1 Tilawah Kabupaten</h6>
+              <p class="small text-muted">2025 - Santri kelas 3</p>
+            </div>
+            <div class="swiper-slide card p-3">
+              <h6>Juara 2 Nasional Tahfidz</h6>
+              <p class="small text-muted">2024 - Tim Tahfidz</p>
+            </div>
+            <div class="swiper-slide card p-3">
+              <h6>Penghargaan Kegiatan Sosial</h6>
+              <p class="small text-muted">2023 - Partisipasi aktif</p>
+            </div>
+          </div>
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         10) GALERI (Masonry + Lightbox modal)
+         ========================= -->
+    <section id="galeri" class="py-6">
+      <div class="container">
+        <div class="section-header mb-4 text-center" data-aos="fade-up"><h2>Galeri Foto</h2></div>
+        <div class="masonry-grid" data-aos="fade-up">
+          <!-- Items: Use data-bs-target to open modal lightbox -->
+          <div class="masonry-item"><img src="assets/images/gallery1.jpg" alt="Gallery 1" loading="lazy" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-src="assets/images/gallery1.jpg"></div>
+          <div class="masonry-item"><img src="assets/images/gallery2.jpg" alt="Gallery 2" loading="lazy" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-src="assets/images/gallery2.jpg"></div>
+          <div class="masonry-item"><img src="assets/images/gallery3.jpg" alt="Gallery 3" loading="lazy" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-src="assets/images/gallery3.jpg"></div>
+          <div class="masonry-item"><img src="assets/images/gallery4.jpg" alt="Gallery 4" loading="lazy" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-src="assets/images/gallery4.jpg"></div>
+        </div>
+      </div>
+
+      <!-- Lightbox Modal -->
+      <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content bg-transparent border-0">
+            <div class="modal-body p-0">
+              <img id="lightboxImage" src="" alt="Preview" class="w-100 rounded" />
+            </div>
+            <div class="modal-footer border-0">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         11) BERITA TERBARU (3 cards)
+         ========================= -->
+    <section id="berita" class="py-6 bg-light">
+      <div class="container">
+        <div class="section-header mb-4 text-center" data-aos="fade-up">
+          <h2>Berita Terbaru</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <article class="card h-100">
+              <img src="assets/images/news1.jpg" class="card-img-top" alt="Berita 1" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Pembukaan Tahun Ajaran Baru</h5>
+                <p class="card-text small text-muted">Kegiatan pembukaan tahun ajaran 2026 berjalan khidmat dan penuh semangat.</p>
+                <a href="#" class="link-primary">Baca Selengkapnya &raquo;</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <article class="card h-100">
+              <img src="assets/images/news2.jpg" class="card-img-top" alt="Berita 2" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Santri Juara Lomba Tilawah</h5>
+                <p class="card-text small text-muted">Prestasi membanggakan ditorehkan oleh salah satu santri kami.</p>
+                <a href="#" class="link-primary">Baca Selengkapnya &raquo;</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <article class="card h-100">
+              <img src="assets/images/news3.jpg" class="card-img-top" alt="Berita 3" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Workshop Life Skill</h5>
+                <p class="card-text small text-muted">Pelatihan keterampilan hidup untuk mendukung kemandirian santri.</p>
+                <a href="#" class="link-primary">Baca Selengkapnya &raquo;</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         12) VIDEO PROFIL (responsive embed)
+         ========================= -->
+    <section id="video" class="py-6">
+      <div class="container">
+        <div class="section-header text-center mb-4" data-aos="fade-up"><h2>Video Profil</h2></div>
+        <div class="ratio ratio-16x9" data-aos="zoom-in">
+          <iframe loading="lazy" src="https://www.youtube.com/embed/VIDEO_ID" title="Profil Pondok Pesantren Al-Mushannif" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         13) PPDB (CTA)
+         ========================= -->
+    <section id="ppdb" class="py-6 bg-primary-gradient text-white">
+      <div class="container text-center" data-aos="fade-up">
+        <h2>PPDB 2026 - Daftar Sekarang</h2>
+        <p class="mb-4">Informasi pendaftaran, persyaratan, jadwal, dan biaya. Tempat terbatas.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="#daftar-online" class="btn btn-light btn-lg text-success">Daftar Online</a>
+          <a href="#info-ppdb" class="btn btn-outline-light btn-lg">Informasi PPDB</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         14) PROGRAM DONASI
+         ========================= -->
+    <section id="donasi" class="py-6">
+      <div class="container">
+        <div class="section-header text-center mb-4" data-aos="fade-up"><h2>Donasi</h2></div>
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="card p-4">
+              <h6>Wakaf</h6>
+              <p class="small text-muted">Dukung pembangunan fasilitas pondok.</p>
+              <div class="progress my-2" style="height:10px">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 48%;" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100">48%</div>
+              </div>
+              <a href="#" class="btn btn-success mt-2">Donasi Sekarang</a>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card p-4">
+              <h6>Infaq &amp; Sedekah</h6>
+              <p class="small text-muted">Ringankan beban pendidikan santri yang kurang mampu.</p>
+              <div class="progress my-2" style="height:10px">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 72%;">72%</div>
+              </div>
+              <a href="#" class="btn btn-warning mt-2 text-dark">Donasi Sekarang</a>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card p-4">
+              <h6>Pembangunan</h6>
+              <p class="small text-muted">Proyek pembangunan kelas dan asrama baru.</p>
+              <div class="progress my-2" style="height:10px">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 25%;">25%</div>
+              </div>
+              <a href="#" class="btn btn-info mt-2 text-white">Donasi Sekarang</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         15) LOKASI (Google Maps responsive)
+         ========================= -->
+    <section id="lokasi" class="py-6 bg-light">
+      <div class="container">
+        <div class="section-header text-center mb-4" data-aos="fade-up"><h2>Lokasi</h2></div>
+        <div class="ratio ratio-16x9" data-aos="zoom-in">
+          <iframe loading="lazy"
+            src="https://www.google.com/maps?q=-8.7333,116.3833&z=15&output=embed"
+            style="border:0;" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         16) KONTAK
+         ========================= -->
+    <section id="kontak" class="py-6">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6" data-aos="fade-right">
+            <h3>Kontak</h3>
+            <p class="small text-muted mb-1"><i class="fa-solid fa-location-dot me-2"></i>Dusun Tenten Lauk, Desa Bujak, Kecamatan Batukliang, Lombok Tengah, NTB</p>
+            <p class="small text-muted mb-1"><i class="fa-solid fa-envelope me-2"></i><a href="mailto:info@ponpes.id">info@ponpes.id</a></p>
+            <p class="small text-muted mb-1"><i class="fa-brands fa-whatsapp me-2"></i><a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a></p>
+            <div class="social-links mt-3">
+              <a class="me-2" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+              <a class="me-2" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram fa-lg"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube fa-lg"></i></a>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="fade-left">
+            <h3>Form Kontak</h3>
+            <form id="contactForm" class="needs-validation" novalidate>
+              <div class="mb-2"><input type="text" class="form-control" placeholder="Nama" required></div>
+              <div class="mb-2"><input type="email" class="form-control" placeholder="Email" required></div>
+              <div class="mb-2"><textarea class="form-control" rows="4" placeholder="Pesan" required></textarea></div>
+              <button type="submit" class="btn btn-success">Kirim Pesan</button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <div id="footer-placeholder"></div>
+  <!-- =========================
+       17) FOOTER
+       ========================= -->
+  <footer class="footer bg-dark text-white py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h6>Pondok Pesantren Al-Mushannif</h6>
+          <p class="small">Dusun Tenten Lauk, Desa Bujak, Kecamatan Batukliang, Lombok Tengah, NTB</p>
+        </div>
 
-  <script type="module" src="/assets/js/config.js"></script>
-  <script type="module" src="/assets/js/auth.js"></script>
-  <script type="module" src="/assets/js/dashboard.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <div class="col-md-4 mb-3">
+          <h6>Quick Menu</h6>
+          <ul class="list-unstyled small">
+            <li><a class="text-white-50" href="#tentang">Profil</a></li>
+            <li><a class="text-white-50" href="#programs">Program Pendidikan</a></li>
+            <li><a class="text-white-50" href="#ppdb">PPDB</a></li>
+            <li><a class="text-white-50" href="#donasi">Donasi</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <h6>Kontak</h6>
+          <p class="small mb-1">Email: info@ponpes.id</p>
+          <p class="small">WhatsApp: +62 812-3456-7890</p>
+          <div class="mt-2">
+            <a class="btn btn-sm btn-outline-light me-2" href="#login">Login Admin</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <small>© <span id="year"></span> Pondok Pesantren Al-Mushannif. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a id="whatsappFloat" class="whatsapp-float" href="https://wa.me/6281234567890" target="_blank" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+  <!-- =========================
+       Scripts (Bootstrap, AOS, Swiper, SweetAlert2)
+       ========================= -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
