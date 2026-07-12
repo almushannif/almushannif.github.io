@@ -1,0 +1,85 @@
+<!-- Container Utama Halaman Data Santri -->
+<div class="card" id="data-santri-page">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold"><i class="fa-solid fa-users text-primary me-2"></i>Data Santri</h3>
+        <button class="btn btn-primary" onclick="showForm()" style="background: var(--primary); border:none; padding: 10px 20px; color:white; border-radius: 8px;">
+            <i class="fa-solid fa-plus me-2"></i>Tambah Santri
+        </button>
+    </div>
+
+    <!-- Tabel Data -->
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="text-align: left; border-bottom: 2px solid #eee;">
+                <th style="padding: 12px;">Nama</th>
+                <th style="padding: 12px;">NIS</th>
+                <th style="padding: 12px;">Kelas</th>
+                <th style="padding: 12px;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="santri-table-body">
+            <!-- Data akan muncul di sini via JS -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal Sederhana untuk Input -->
+<div id="modal-tambah" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+    <div class="card" style="width: 400px;">
+        <h4>Tambah Santri Baru</h4>
+        <input type="text" id="input-nama" placeholder="Nama Lengkap" class="form-control" style="margin:10px 0; padding:8px; width:100%;">
+        <input type="text" id="input-nis" placeholder="NIS" class="form-control" style="margin:10px 0; padding:8px; width:100%;">
+        <input type="text" id="input-kelas" placeholder="Kelas" class="form-control" style="margin:10px 0; padding:8px; width:100%;">
+        <button onclick="tambahSantri()" style="background:var(--primary); color:white; border:none; padding:10px; width:100%; border-radius:5px;">Simpan</button>
+    </div>
+</div>
+
+<script>
+    let santriData = [
+        { id: 1, nama: "Ahmad Fauzi", nis: "2026001", kelas: "10-A" },
+        { id: 2, nama: "Siti Aminah", nis: "2026002", kelas: "11-B" }
+    ];
+
+    function renderTable() {
+        const tbody = document.getElementById('santri-table-body');
+        tbody.innerHTML = '';
+        santriData.forEach((s) => {
+            tbody.innerHTML += `
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px;">${s.nama}</td>
+                    <td style="padding: 12px;">${s.nis}</td>
+                    <td style="padding: 12px;">${s.kelas}</td>
+                    <td style="padding: 12px;">
+                        <button onclick="hapusSantri(${s.id})" style="background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function showForm() { document.getElementById('modal-tambah').style.display = 'flex'; }
+
+    function tambahSantri() {
+        const nama = document.getElementById('input-nama').value;
+        const nis = document.getElementById('input-nis').value;
+        const kelas = document.getElementById('input-kelas').value;
+
+        if(nama && nis && kelas) {
+            santriData.push({ id: Date.now(), nama, nis, kelas });
+            document.getElementById('modal-tambah').style.display = 'none';
+            renderTable();
+        }
+    }
+
+    function hapusSantri(id) {
+        if(confirm('Yakin ingin menghapus data ini?')) {
+            santriData = santriData.filter(s => s.id !== id);
+            renderTable();
+        }
+    }
+
+    // Inisialisasi awal
+    renderTable();
+</script>
