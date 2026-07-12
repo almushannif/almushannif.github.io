@@ -1,0 +1,5 @@
+/* Responsive tweaks separated for clarity */
+@media(max-width:600px){
+  .container{margin:20px auto;padding:0 12px}
+  .brand{font-size:16px}
+}

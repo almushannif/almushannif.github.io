@@ -1,0 +1,4 @@
+/* Login page styles */
+.auth-page{display:flex;align-items:center;justify-content:center;height:100vh}
+.login-card{max-width:420px;width:100%;text-align:center}
+.btn{cursor:pointer}

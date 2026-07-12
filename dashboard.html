@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard — Al‑Mushannif</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body class="dashboard theme-light">
+  <div id="sidebar-placeholder"></div>
+  <div id="navbar-placeholder"></div>
+  <main class="dashboard-main">
+    <section class="stats">
+      <div class="card glass">
+        <h3>Statistik</h3>
+        <canvas id="chart-stats" height="120"></canvas>
+      </div>
+    </section>
+
+    <section class="overview">
+      <div class="card glass">
+        <h3>Ringkasan</h3>
+        <div id="summary-cards" class="grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/api.js"></script>
+  <script type="module" src="/assets/js/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

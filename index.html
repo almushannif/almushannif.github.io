@@ -1,127 +1,51 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pondok Pesantren Al-Mushannif</title>
-  <meta name="description" content="Pondok Pesantren & Yayasan Al-Mushannif — Membangun Generasi Qur'ani" />
-  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Al‑Mushannif — Sistem Informasi</title>
+  <meta name="description" content="Sistem Informasi Pondok Pesantren Al‑Mushannif">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
-<body>
-<header class="site-header">
-  <div class="container header-inner">
-    <div class="brand">
-      <img src="/assets/logo.svg" alt="Logo Yayasan Al‑Mushannif" class="site-logo">
-      <h1 class="site-title">Pondok Pesantren Al‑Mushannif</h1>
-    </div>
-    <nav class="nav">
-      <a href="#about">Tentang</a>
-      <a href="#programs">Program</a>
-      <a href="#gallery">Galeri</a>
-      <a href="#news">Berita</a>
-      <a href="/ppdb.html" class="btn">PPDB</a>
-      <a href="/donasi.html">Donasi</a>
-      <a href="#contact">Kontak</a>
-    </nav>
-  </div>
-</header>
+<body class="theme-light">
+  <!-- Loader (hidden by default) -->
+  <div id="app-loader" class="loader" hidden></div>
 
-<main>
-  <section class="hero" id="home">
-    <div class="container hero-inner">
-      <div>
-        <h2>Membangun Generasi Qur'ani, Berakhlakul Karimah</h2>
-        <p class="lead">Pendidikan Islam berkualitas, berwawasan keilmuan dan karakter.</p>
-        <p class="actions">
-          <a href="#about" class="btn">Profil Pondok</a>
-          <a href="/ppdb.html" class="btn ghost">PPDB Online</a>
-        </p>
-      </div>
-      <div class="hero-img" aria-hidden="true">
-        <!-- simple SVG placeholder -->
-        <svg width="360" height="220" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" role="img">
-          <rect width="100%" height="100%" fill="#eef2f6" rx="8"/>
-          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9aa7b5" font-size="20">Foto Gedung Pondok</text>
-        </svg>
-      </div>
-    </div>
-  </section>
+  <!-- Navbar (included component) -->
+  <div id="navbar-placeholder"></div>
 
-  <section class="container" id="about">
-    <h3>Tentang Kami</h3>
-    <p>Pondok Pesantren & Yayasan Al‑Mushannif berkomitmen menyelenggarakan pendidikan berbasis Al‑Qur'an dan akhlak.</p>
-    <div class="grid-3">
-      <div class="card">
-        <h4>Visi</h4>
-        <p>Mencetak generasi qur'ani berakhlakul karimah, berilmu dan berprestasi.</p>
+  <main class="container">
+    <section class="hero">
+      <div class="card glass">
+        <h1>Selamat datang di Sistem Informasi</h1>
+        <p>Pondok Pesantren Al‑Mushannif — tampilan awal.</p>
+        <a class="btn" href="/login.html">Masuk</a>
       </div>
-      <div class="card">
-        <h4>Misi</h4>
+    </section>
+
+    <section class="features">
+      <div class="card glass">
+        <h2>Fitur</h2>
         <ul>
-          <li>Pendidikan agama dan umum terintegrasi</li>
-          <li>Peningkatan kualitas guru</li>
-          <li>Pembinaan karakter santri</li>
+          <li>PPDB Online</li>
+          <li>Dashboard Statistik</li>
+          <li>Manajemen Santri, Guru, Alumni</li>
         </ul>
       </div>
-      <div class="card">
-        <h4>Alamat</h4>
-        <p>Dusun Tenten Lauk, Desa Bujak, Kec. Batukliang, Kab. Lombok Tengah, NTB</p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="container" id="programs">
-    <h3>Program Pendidikan</h3>
-    <ul class="program-list">
-      <li>Tahfidz Al‑Qur'an</li>
-      <li>Kitab Kuning</li>
-      <li>Bahasa Arab & Inggris</li>
-      <li>Komputer & Life Skill</li>
-      <li>Madrasah Diniyah & TPQ</li>
-    </ul>
-  </section>
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
 
-  <section class="container" id="gallery">
-    <h3>Galeri</h3>
-    <div class="gallery-grid">
-      <div class="thumb">Foto 1</div>
-      <div class="thumb">Foto 2</div>
-      <div class="thumb">Foto 3</div>
-      <div class="thumb">Foto 4</div>
-    </div>
-  </section>
-
-  <section class="container" id="news">
-    <h3>Berita Terbaru</h3>
-    <article class="news-item">
-      <h4>Pengumuman Penerimaan Santri</h4>
-      <p>PPDB dibuka untuk tahun ajaran baru. Cek menu PPDB untuk syarat dan formulir online.</p>
-    </article>
-  </section>
-
-  <section class="container highlight" id="ppdb">
-    <h3>PPDB Online</h3>
-    <p>Persyaratan, jadwal, biaya, dan formulir pendaftaran dapat diakses melalui formulir online.</p>
-    <p><a href="/ppdb.html" class="btn">Daftar Sekarang (PPDB)</a></p>
-  </section>
-
-  <section class="container" id="contact">
-    <h3>Kontak</h3>
-    <p>Email: <a href="mailto:info@almushannif.ponpes.id">info@almushannif.ponpes.id</a></p>
-    <p>WhatsApp: <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">+62 812-3456-7890</a></p>
-    <p>Google Maps: (embed di admin nanti)</p>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; <span id="year"></span> Pondok Pesantren Al‑Mushannif — Semua hak dilindungi.</p>
-  </div>
-</footer>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <script type="module" src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/auth.js"></script>
+  <script type="module" src="/assets/js/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+{
+  "name": "Al-Mushannif",
+  "short_name": "AlMush",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#0B6E4F",
+  "icons": []
+}

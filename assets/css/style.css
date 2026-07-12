@@ -1,0 +1,49 @@
+/* Root styles, variables, and common utilities */
+:root{
+  --color-primary:#0B6E4F;
+  --color-secondary:#198754;
+  --color-accent:#FFC107;
+  --color-bg:#F8F9FA;
+  --color-dark:#212529;
+  --glass-bg: rgba(255,255,255,0.6);
+  --glass-border: rgba(255,255,255,0.4);
+  --fw-regular:400;
+  --fw-medium:600;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:'Poppins',sans-serif;background:var(--color-bg);color:var(--color-dark);-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:40px auto;padding:0 16px}
+.card{background:white;border-radius:var(--radius);padding:20px;box-shadow:0 6px 18px rgba(16,24,40,0.08)}
+.glass{background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(6px)}
+.btn{display:inline-block;padding:10px 16px;border-radius:8px;background:var(--color-primary);color:white;text-decoration:none}
+.btn-primary{background:var(--color-secondary)}
+.muted{color:#6c757d}
+
+/* Navbar placeholder styling */
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;position:sticky;top:0;background:rgba(255,255,255,0.5);backdrop-filter:blur(6px);z-index:50}
+.brand{font-weight:600;color:var(--color-primary)}
+
+/* Sidebar basic */
+.sidebar{width:240px;background:linear-gradient(180deg,white, #f7f7f7);position:fixed;top:0;left:0;height:100%;padding:20px;border-right:1px solid #eee}
+.dashboard-main{margin-left:260px;padding:24px}
+
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{position:static;width:100%;height:auto;border-right:none}
+  .dashboard-main{margin-left:0}
+}
+
+/* Loader */
+.loader{position:fixed;inset:0;background:rgba(255,255,255,0.75);display:flex;align-items:center;justify-content:center;z-index:999}
+.loader:after{content:'';width:56px;height:56px;border-radius:50%;border:6px solid var(--color-primary);border-top-color:transparent;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Dark theme */
+.theme-dark{--color-bg:#0f1720;color:#e6edf3;background:#0b1220}
+.theme-dark .card{background:#0b1220;border-color:rgba(255,255,255,0.04)}
+
+/* Small utilities */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}

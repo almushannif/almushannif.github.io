@@ -1,0 +1,4 @@
+/* Dashboard specific styles */
+.stats .card{padding:16px}
+.overview .card{padding:16px;margin-top:12px}
+.summary-item{display:flex;flex-direction:column;padding:12px;border-radius:8px;background:rgba(255,255,255,0.6)}
